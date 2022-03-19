@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import {
   IconButton,
   Box,
@@ -6,7 +6,6 @@ import {
   Flex,
   Icon,
   useColorModeValue,
-  Link,
   Drawer,
   DrawerContent,
   Text,
@@ -27,17 +26,16 @@ import {
 import { CgProfile } from "react-icons/cg";
 import { BsPerson } from "react-icons/bs";
 import { AuthContext } from "../context/auth-context";
-import { useWeb3React } from "@web3-react/core";
-import { injected } from "../web3/connectors";
+import { Link } from "react-router-dom";
 
 const LinkItems = [
   { name: "/", icon: FiHome },
   { name: "create", icon: FiPlusCircle },
   { name: "profile", icon: CgProfile },
-  { name: "/", icon: FiTrendingUp },
-  { name: "/", icon: FiCompass },
-  { name: "/", icon: FiStar },
-  { name: "/", icon: FiSettings },
+  { name: "", icon: FiTrendingUp },
+  { name: "", icon: FiCompass },
+  { name: "", icon: FiStar },
+  { name: "", icon: FiSettings },
 ];
 
 const AuthIcons = [BsPerson, FiPower];
@@ -45,7 +43,7 @@ const AuthIcons = [BsPerson, FiPower];
 export default function SimpleSidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box minH="100vh">
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -65,7 +63,7 @@ export default function SimpleSidebar({ children }) {
       </Drawer>
       {/* mobilenav */}
       <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
-      <Box w="100%" p={10} m={10}>
+      <Box p={3} ml={20} w="100%">
         {children}
       </Box>
     </Box>
@@ -74,7 +72,6 @@ export default function SimpleSidebar({ children }) {
 
 const SidebarContent = ({ onClose, ...rest }) => {
   const auth = useContext(AuthContext);
-  //const { active } = useWeb3React();
   return (
     <Box
       bg={useColorModeValue("white", "gray.900")}
@@ -158,11 +155,7 @@ const AuthItem = ({ icon, children, tooltip, loginPress }) => {
 
 const NavItem = ({ icon, children, tooltip }) => {
   return (
-    <Link
-      href={tooltip}
-      style={{ textDecoration: "none" }}
-      _focus={{ boxShadow: "none" }}
-    >
+    <Link to={tooltip} style={{ textDecoration: "none" }}>
       <Flex
         align="center"
         p="6"

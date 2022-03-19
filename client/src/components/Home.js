@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Container, Center } from "@chakra-ui/react";
 import NftList from "./NftList";
 
-const Profile = () => {
+const Home = () => {
   const [list, setList] = useState(null);
 
   useEffect(() => {
@@ -20,6 +19,20 @@ const Profile = () => {
         description: "The best nft",
         image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPCMDD7OLK3LuJdJR6fDW026l3qVi4G9TJ6g&usqp=CAU",
+      },
+      {
+        price: "0.03",
+        name: "First name",
+        description: "The best nft",
+        image:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzRnuI0C8IQX-xXSibuHqFUA6z4ORmcrgUwg&usqp=CAU",
+      },
+      {
+        price: "0.03",
+        name: "First name",
+        description: "The best nft",
+        image:
+          "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAyVBMVEVjhZZ9omkAAABeclNVVVWBp2xCVTdmipsmMzlLZXL/AABsjFqbvIhff49Vc4F4m2RXV1c3NzcTGRxgdlVfe1A0Rk8XHhSIrHVlfVhRaURAVmFqhFtVdVU9SjZui166Sjb2FRBOd1Z1p2zcAADCAAAgICBkdFzWVTfnPigvPiiRs34xQk+ev4sAHxRbbVE4S1VYdoYmKSseKTcSFw9IX19HXDtOZUumbkqkSjYySjauYUOVSjZATTjQWTrUFxDgQyy8GRFbglwHCxeUh6pBAAADOklEQVR4nO3de1cSQRiAcUERiVtxE8Ss7G6Et7J7Rt//Q9WJeQeOsw4DiPPO9jx/ru/R+bGcwwq77NYWERER3VdlKfZCNlX5tGuqxF7Khiq3iqaDnO5FhOmHMP0Qpl9uhfWG6ez8pen0TLbFXtyd1JA9V9x5aHpkN+ViZ84JTTNhC2ESIUw/hOmHMP0Qph/C9EOYfgjTD2H6IUw/hOmHMP0QplbdySvMmI8tWFC56MkVZtRVvlsRIkQYP4QI9QrtiZVrC9/pPEezsWe6qDp1PMKeO354YX7VuSpixSpKhRuVqj6hOz57QFIRFhAi1BFChOqF5eWEO1Z4qV3YqJg+7Ep2yftS0/7slXQlWz5mPCB2XH555SwasLwnD/duSbIrPRnV/jWqlTw5wL97UbI7M94FKPNCZ6EnNdNJhiIkhAgRIkT4PwhHplrOhOIa7a8I0y+UJydChAgRIkS4UJjf10P75sW6QLXCuwshQoQIESJEiBAhQoQIESJMQxj0ob1vXLtw2L7Ztg/Yd8b76oXbNxt7hc54GyFChAgRJi20V0R4hYdS0OvhxBmPKTyQrgamjrPi0qcnps9fHpuatwOPv8r4Nxn/Hk9Yt3+6evvx2PHrB6bndtwnfCPjL4pOMYWeJSNEiBAhQoSLhT+emn6+703zCq9l/JeM95QLC5NnpknQ+zQZ49qF9si774PZ7JH3ULYgRIgQIcK8CD0vdcOxKVAo47qEb6WBS2zagoTuuAqhLWefriFEiBAhQhXCkLMYYgrlZpvd1orCasfJPS6IeS5G0GdPvj04cJ8F7iGu+rNNECJEiBAhQoQLiMqP2tYXhj0MCBEiRIgQIUKECBEiRIgQYaJC92YWs3R9brGicLbkjHLxPk2pl2lDiBAhQoQI55d8mXvhtj2HtOmUMZ6gsC3nAR8tdwiUojBgGiFChAgRZgvHU+DYK1Rw/eGqwsKR5LsEoyrfRDGwX06h455dIcKQ5u+7Fv+Wq5sWxpMhRIgQIcJ7F7r/0Pvq/G5NS0c4u9NqUKrurb4RYVeDTEKIEGH8ECLMn7ARUry3LDJaVliPveClQ4hQfwgR6g8hQv0hRKg/hAj1h1CP8A++xOWCzER5gQAAAABJRU5ErkJggg==",
       },
     ]);
   }, []);
@@ -41,9 +54,23 @@ const Profile = () => {
           image:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPCMDD7OLK3LuJdJR6fDW026l3qVi4G9TJ6g&usqp=CAU",
         },
+        {
+          price: "0.03",
+          name: "First name",
+          description: "The best nft",
+          image:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzRnuI0C8IQX-xXSibuHqFUA6z4ORmcrgUwg&usqp=CAU",
+        },
+        {
+          price: "0.03",
+          name: "First name",
+          description: "The best nft",
+          image:
+            "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAyVBMVEVjhZZ9omkAAABeclNVVVWBp2xCVTdmipsmMzlLZXL/AABsjFqbvIhff49Vc4F4m2RXV1c3NzcTGRxgdlVfe1A0Rk8XHhSIrHVlfVhRaURAVmFqhFtVdVU9SjZui166Sjb2FRBOd1Z1p2zcAADCAAAgICBkdFzWVTfnPigvPiiRs34xQk+ev4sAHxRbbVE4S1VYdoYmKSseKTcSFw9IX19HXDtOZUumbkqkSjYySjauYUOVSjZATTjQWTrUFxDgQyy8GRFbglwHCxeUh6pBAAADOklEQVR4nO3de1cSQRiAcUERiVtxE8Ss7G6Et7J7Rt//Q9WJeQeOsw4DiPPO9jx/ru/R+bGcwwq77NYWERER3VdlKfZCNlX5tGuqxF7Khiq3iqaDnO5FhOmHMP0Qpl9uhfWG6ez8pen0TLbFXtyd1JA9V9x5aHpkN+ViZ84JTTNhC2ESIUw/hOmHMP0Qph/C9EOYfgjTD2H6IUw/hOmHMP0QplbdySvMmI8tWFC56MkVZtRVvlsRIkQYP4QI9QrtiZVrC9/pPEezsWe6qDp1PMKeO354YX7VuSpixSpKhRuVqj6hOz57QFIRFhAi1BFChOqF5eWEO1Z4qV3YqJg+7Ep2yftS0/7slXQlWz5mPCB2XH555SwasLwnD/duSbIrPRnV/jWqlTw5wL97UbI7M94FKPNCZ6EnNdNJhiIkhAgRIkT4PwhHplrOhOIa7a8I0y+UJydChAgRIkS4UJjf10P75sW6QLXCuwshQoQIESJEiBAhQoQIESJMQxj0ob1vXLtw2L7Ztg/Yd8b76oXbNxt7hc54GyFChAgRJi20V0R4hYdS0OvhxBmPKTyQrgamjrPi0qcnps9fHpuatwOPv8r4Nxn/Hk9Yt3+6evvx2PHrB6bndtwnfCPjL4pOMYWeJSNEiBAhQoSLhT+emn6+703zCq9l/JeM95QLC5NnpknQ+zQZ49qF9si774PZ7JH3ULYgRIgQIcK8CD0vdcOxKVAo47qEb6WBS2zagoTuuAqhLWefriFEiBAhQhXCkLMYYgrlZpvd1orCasfJPS6IeS5G0GdPvj04cJ8F7iGu+rNNECJEiBAhQoQLiMqP2tYXhj0MCBEiRIgQIUKECBEiRIgQYaJC92YWs3R9brGicLbkjHLxPk2pl2lDiBAhQoQI55d8mXvhtj2HtOmUMZ6gsC3nAR8tdwiUojBgGiFChAgRZgvHU+DYK1Rw/eGqwsKR5LsEoyrfRDGwX06h455dIcKQ5u+7Fv+Wq5sWxpMhRIgQIcJ7F7r/0Pvq/G5NS0c4u9NqUKrurb4RYVeDTEKIEGH8ECLMn7ARUry3LDJaVliPveClQ4hQfwgR6g8hQv0hRKg/hAj1h1CP8A++xOWCzER5gQAAAABJRU5ErkJggg==",
+        },
       ]}
     />
   );
 };
 
-export default Profile;
+export default Home;
