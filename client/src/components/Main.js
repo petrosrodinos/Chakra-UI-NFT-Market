@@ -9,15 +9,15 @@ import { Container } from "@chakra-ui/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const Main = () => {
-  const { accounts, Login, Logout } = useAuth();
+  const { accounts, contract, Login, Logout, web3 } = useAuth();
 
   useEffect(async () => {
-    //Login();
+    Login();
   }, []);
 
   return (
     <AuthContext.Provider
-      value={{ accounts, Login, Logout, logedIn: !!accounts }}
+      value={{ web3, accounts, contract, Login, Logout, logedIn: !!accounts }}
     >
       <Container maxW="container.xl">
         <BrowserRouter>

@@ -16,8 +16,9 @@ import { FiHome, FiArrowRight } from "react-icons/fi";
 import ConfirmBuy from "./ConfirmBuy";
 
 import React from "react";
+import ListToMarket from "./ListToMarket";
 
-export default function Card({ nft, confirm, preview }) {
+export default function Card({ nft, confirm, preview, path, minted }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -70,35 +71,64 @@ export default function Card({ nft, confirm, preview }) {
           </Text>
           <Heading fontSize={"2xl"} fontFamily={"body"} fontWeight={500}>
             {!confirm
-              ? nft.description.substring(0, 25) + "..."
+              ? nft.description.length >= 30
+                ? nft.description.substring(0, 30) + "..."
+                : nft.description
               : nft.description}
           </Heading>
           <Stack direction={"row"} align={"center"}>
             <Text fontWeight={800} fontSize={"xl"}>
               {nft.price}
             </Text>
-            <Icon color="#38B2AC" mr="4" fontSize="20" as={FaEthereum} />
+            <Icon color={color} mr="4" fontSize="20" as={FaEthereum} />
           </Stack>
+          {confirm && (
+            <Stack direction={"column"} align={"center"}>
+              <Text fontWeight={800} fontSize={"md"}>
+                Owner:
+                <Text fontWeight={400} fontSize={"sm"}>
+                  {nft.owner}
+                </Text>
+              </Text>
+              <Text fontWeight={800} fontSize={"md"}>
+                Seller:
+                <Text fontWeight={400} fontSize={"sm"}>
+                  {nft.seller}
+                </Text>
+              </Text>
+            </Stack>
+          )}
           {preview && (
             <Button
               rightIcon={<FiHome />}
-              colorScheme={"blue"}
+              colorScheme={"teal"}
               variant="outline"
             >
               TAKE ME HOME
             </Button>
           )}
-          {!confirm && !preview && (
+          {path === "home" && (
             <Button
               rightIcon={<FiArrowRight />}
-              colorScheme={"blue"}
+              colorScheme={"teal"}
               variant="outline"
               onClick={onOpen}
             >
               SEE MORE
             </Button>
           )}
-          {confirm && (
+          {path === "profile" && !minted && (
+            <Button
+              rightIcon={<FiHome />}
+              colorScheme={"teal"}
+              variant="outline"
+              onClick={onOpen}
+            >
+              SELL ME
+            </Button>
+          )}
+
+          {confirm && !path && (
             <Button
               rightIcon={<FiHome />}
               colorScheme={"blue"}
@@ -112,7 +142,16 @@ export default function Card({ nft, confirm, preview }) {
           )}
         </Stack>
       </Box>
-      <ConfirmBuy nft={nft} isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
+      <ConfirmBuy isOpen={isOpen} onClose={onClose} onOpen={onOpen}>
+        {path === "home" && (
+          <Card
+            style={{ display: "flex", flexWrap: "wrap" }}
+            confirm
+            nft={nft}
+          />
+        )}
+        {path === "profile" && !minted && <ListToMarket />}
+      </ConfirmBuy>
     </Center>
   );
 }

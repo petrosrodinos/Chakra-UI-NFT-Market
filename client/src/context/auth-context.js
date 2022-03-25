@@ -5,4 +5,6 @@ export const AuthContext = createContext({
   Login: () => {},
   Logout: () => {},
   logedIn: false,
+  contract: null,
+  web3: null,
 });

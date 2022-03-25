@@ -5,14 +5,14 @@ import Filters from "./Filters";
 import { FiAlertCircle } from "react-icons/fi";
 import { color } from "../style/colors";
 
-const NftList = ({ nftList }) => {
+const NftList = ({ nftList, path, minted }) => {
   const [list, setList] = useState(null);
 
   useEffect(() => {
     if (nftList) {
       setList(nftList);
     }
-  }, []);
+  }, [nftList]);
 
   return (
     <>
@@ -28,7 +28,7 @@ const NftList = ({ nftList }) => {
       {list && (
         <SimpleGrid columns={[2, null, 3]} spacing={1}>
           {list.map((item, index) => (
-            <Card key={index} nft={item} />
+            <Card minted={minted} path={path} key={index} nft={item} />
           ))}
         </SimpleGrid>
       )}

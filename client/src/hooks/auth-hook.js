@@ -1,6 +1,6 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import getWeb3 from "../getWeb3";
-import SimpleStorageContract from "../contracts/SimpleStorage.json";
+import NFTMarketplaceContract from "../contracts/NFTMarketplace.json";
 import { useWeb3React } from "@web3-react/core";
 import { injected } from "../web3/connectors";
 
@@ -36,12 +36,11 @@ export const useAuth = () => {
     try {
       const web3 = await getWeb3();
       const accounts = await web3.eth.getAccounts();
-      console.log(web3);
 
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = SimpleStorageContract.networks[networkId];
+      const deployedNetwork = NFTMarketplaceContract.networks[networkId];
       const instance = new web3.eth.Contract(
-        SimpleStorageContract.abi,
+        NFTMarketplaceContract.abi,
         deployedNetwork && deployedNetwork.address
       );
       setState({ ...state, web3, accounts, contract: instance });
@@ -56,23 +55,17 @@ export const useAuth = () => {
     }
   }, []);
 
-  // useEffect(async () => {
-  //   const { accounts, contract } = state;
-  //   if (accounts === null) return;
-  //   console.log(state);
-
-  //   await contract.methods.set(8).send({ from: accounts[0] });
-
-  //   const response = await contract.methods.get().call();
-
-  //   console.log(response);
-  // }, [state]);
-
   const Logout = useCallback(() => {
     localStorage.removeItem("userId");
     setState({ ...state, accounts: null });
     //disconnect();
   });
 
-  return { web3: state.web3, accounts: state.accounts, error1, Login, Logout };
+  return {
+    web3: state.web3,
+    contract: state.contract,
+    accounts: state.accounts,
+    Login,
+    Logout,
+  };
 };

@@ -11,7 +11,7 @@ import {
 import Card from "./Card";
 import React from "react";
 
-const ConfirmBuy = ({ isOpen, onClose, nft }) => {
+const ConfirmBuy = ({ isOpen, onClose, nft, children }) => {
   const cancelRef = React.useRef();
 
   return (
@@ -28,9 +28,7 @@ const ConfirmBuy = ({ isOpen, onClose, nft }) => {
         <AlertDialogContent>
           <AlertDialogHeader>INFO</AlertDialogHeader>
           <AlertDialogCloseButton />
-          <AlertDialogBody>
-            <Card confirm nft={nft} />
-          </AlertDialogBody>
+          <AlertDialogBody>{children}</AlertDialogBody>
           <AlertDialogFooter>
             <Button colorScheme="red" ref={cancelRef} onClick={onClose}>
               CANCEL

@@ -16,6 +16,7 @@ const FileUpload = ({ setImage, setImagePreview }) => {
 
   const onChange = (e) => {
     var files = e.target.files;
+    if (!files || files.length == 0) return;
     setFile(files[0].name);
     setImagePreview(URL.createObjectURL(files[0]));
     setImage(files[0]);

@@ -11,10 +11,13 @@ import {
   Text,
   useColorModeValue,
   Textarea,
+  Alert,
+  Spinner,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import File from "./File";
 import Card from "./Card";
+import { useNft } from "../hooks/nft-hook";
 
 export default function CreateNft() {
   const [image, setImage] = useState();
@@ -26,6 +29,7 @@ export default function CreateNft() {
     description: "Description goes here",
     price: "0",
   });
+  const { create, error, loading } = useNft();
 
   const dataChanged = (e) => {
     const name = e.target.name;
@@ -41,8 +45,19 @@ export default function CreateNft() {
     }
   };
 
+  const createNft = async () => {
+    const { name, description, price } = data;
+    if (!name || !description || !price || !image) return;
+
+    try {
+      create({ ...data, image: image });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <SimpleGrid columns={[2, null, 2]}>
+    <SimpleGrid columns={[1, null, 2]}>
       <Flex minH={"100vh"} align={"center"} justify={"center"}>
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
           <Stack align={"center"}>
@@ -103,7 +118,7 @@ export default function CreateNft() {
 
               <Stack spacing={10} pt={2}>
                 <Button
-                  loadingText="Creating"
+                  onClick={createNft}
                   size="lg"
                   bg={"blue.400"}
                   color={"white"}
@@ -111,14 +126,19 @@ export default function CreateNft() {
                     bg: "blue.500",
                   }}
                 >
-                  Create
+                  {loading ? <Spinner size="lg" /> : "Create"}
                 </Button>
+                {error && (
+                  <Alert status="error">
+                    There was an error minting your nft
+                  </Alert>
+                )}
               </Stack>
             </Stack>
           </Box>
         </Stack>
       </Flex>
-      <Card nft={{ ...data, image: imagePreview }} />
+      <Card preview nft={{ ...data, image: imagePreview }} />
     </SimpleGrid>
   );
 }
