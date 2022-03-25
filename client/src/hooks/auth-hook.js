@@ -1,8 +1,6 @@
 import { useState, useCallback } from "react";
 import getWeb3 from "../getWeb3";
 import NFTMarketplaceContract from "../contracts/NFTMarketplace.json";
-import { useWeb3React } from "@web3-react/core";
-import { injected } from "../web3/connectors";
 
 export const useAuth = () => {
   const [error1, setError] = useState();
@@ -11,26 +9,6 @@ export const useAuth = () => {
     accounts: null,
     contract: null,
   });
-
-  const { activate, deactivate, account, chainId, error } = useWeb3React();
-
-  async function connect() {
-    try {
-      await activate(injected);
-      localStorage.setItem("userId", error);
-    } catch (ex) {
-      console.log(ex);
-    }
-  }
-
-  async function disconnect() {
-    try {
-      deactivate();
-      localStorage.removeItem("userId");
-    } catch (ex) {
-      console.log(ex);
-    }
-  }
 
   const Login = useCallback(async () => {
     try {

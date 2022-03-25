@@ -9,17 +9,19 @@ import {
   Icon,
   Button,
   useDisclosure,
+  Spinner,
 } from "@chakra-ui/react";
 import { color } from "../style/colors";
 import { FaEthereum } from "react-icons/fa";
 import { FiHome, FiArrowRight } from "react-icons/fi";
 import ConfirmBuy from "./ConfirmBuy";
-
 import React from "react";
 import ListToMarket from "./ListToMarket";
+import { useNft } from "../hooks/nft-hook";
 
 export default function Card({ nft, confirm, preview, path, minted }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { buyNft, loading } = useNft();
 
   return (
     <Center py={12}>
@@ -131,13 +133,13 @@ export default function Card({ nft, confirm, preview, path, minted }) {
           {confirm && !path && (
             <Button
               rightIcon={<FiHome />}
-              colorScheme={"blue"}
+              colorScheme={"teal"}
               variant="outline"
               onClick={() => {
-                alert("sold");
+                buyNft(nft.tokenId, nft.price);
               }}
             >
-              TAKE ME HOME
+              {loading ? <Spinner size="lg" /> : "TAKE ME HOME"}
             </Button>
           )}
         </Stack>
@@ -150,7 +152,9 @@ export default function Card({ nft, confirm, preview, path, minted }) {
             nft={nft}
           />
         )}
-        {path === "profile" && !minted && <ListToMarket />}
+        {path === "profile" && !minted && (
+          <ListToMarket id={nft.tokenId} owner={nft.owner} />
+        )}
       </ConfirmBuy>
     </Center>
   );
