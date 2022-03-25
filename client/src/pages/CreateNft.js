@@ -15,8 +15,8 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import File from "./File";
-import Card from "./Card";
+import File from "../components/File";
+import Card from "../components/Card";
 import { useNft } from "../hooks/nft-hook";
 
 export default function CreateNft() {

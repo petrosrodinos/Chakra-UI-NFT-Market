@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import AppBar from "./AppBar";
+import AppBar from "../components/AppBar";
 import { AuthContext } from "../context/auth-context";
 import { useAuth } from "../hooks/auth-hook";
 import Home from "./Home";

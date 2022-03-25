@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import NftList from "./NftList";
+import NftList from "../components/NftList";
 import { useNft } from "../hooks/nft-hook";
 import { Spinner, Center } from "@chakra-ui/react";
 
