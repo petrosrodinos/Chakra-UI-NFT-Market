@@ -128,11 +128,7 @@ export default function CreateNft() {
                 >
                   {loading ? <Spinner size="lg" /> : "Create"}
                 </Button>
-                {error && (
-                  <Alert status="error">
-                    There was an error minting your nft
-                  </Alert>
-                )}
+                {error && <Alert status="error">{error}</Alert>}
               </Stack>
             </Stack>
           </Box>

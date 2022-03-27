@@ -9,7 +9,9 @@ export const useNft = () => {
   const [loading, setLoading] = useState(false);
   const auth = useContext(AuthContext);
   let navigate = useNavigate();
-  const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
+  const client = new ipfsHttpClient(
+    new URL("https://ipfs.infura.io:5001/api/v0")
+  );
   const contract = auth.contract;
   const accounts = auth.accounts;
   const web3 = auth.web3;
@@ -18,8 +20,11 @@ export const useNft = () => {
     try {
       setLoading(true);
       const added = await client.add(image, {
-        progress: (prog) => {},
+        progress: (prog) => {
+          console.log(prog);
+        },
       });
+      console.log(added);
       const url = `https://ipfs.infura.io/ipfs/${added.path}`;
       const data = JSON.stringify({
         name,
@@ -28,19 +33,19 @@ export const useNft = () => {
       });
       const metadata = await client.add(data);
       const metadataUrl = `https://ipfs.infura.io/ipfs/${metadata.path}`;
-      //console.log(metadataUrl);
+      console.log("metadata: " + metadata, "metadata url: " + metadataUrl);
       let pricew = web3.utils.toWei(price, "ether");
       let listingPrice = await contract.methods.getListingPrice().call();
       listingPrice = listingPrice.toString();
-      let res = await contract.methods
+      await contract.methods
         .createToken(metadataUrl, pricew)
         .send({ from: accounts[0], value: listingPrice });
       setLoading(false);
       navigate("/");
     } catch (error) {
       setLoading(false);
-      setError(error);
-      console.log(error);
+      setError(error.message);
+      console.log("error: ", error);
     }
   });
 
