@@ -5,10 +5,6 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-// import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/74c9130a5916904ba397a903db446cd049a3d22d/contracts/utils/Counters.sol";
-// import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/74c9130a5916904ba397a903db446cd049a3d22d/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-// import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/74c9130a5916904ba397a903db446cd049a3d22d/contracts/token/ERC721/ERC721.sol";
-//import "hardhat/console.sol";
 
 contract NFTMarketplace is ERC721URIStorage {
     using Counters for Counters.Counter;

@@ -5,13 +5,15 @@ import { useAuth } from "../hooks/auth-hook";
 import Home from "./Home";
 import CreateNft from "./CreateNft";
 import Profile from "./Profile";
-import { Container } from "@chakra-ui/react";
+import { Container, useDisclosure } from "@chakra-ui/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Notice from "../components/Notice";
 
 const Main = () => {
   const { accounts, contract, Login, Logout, web3 } = useAuth();
-
+  const { isOpen, onOpen, onClose } = useDisclosure();
   useEffect(async () => {
+    onOpen();
     Login();
   }, []);
 
@@ -22,6 +24,7 @@ const Main = () => {
       <Container maxW="container.xl">
         <BrowserRouter>
           <AppBar>
+            <Notice isOpen={isOpen} onClose={onClose} />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="create" element={<CreateNft />} />
